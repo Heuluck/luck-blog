@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Heuluck的新博客
+老博客用WordPress，已经是很优秀的系统了。
 
-## Getting Started
+但是最近学了下Next.js，想尝试做一次前后端一体的项目——已经有8个月没写过后端了，最近才重拾后端开发，自学MySQL，于是有了这个项目。
 
-First, run the development server:
+所以大概是个测试项目。
 
+## 安装
+`git clone`本仓库后，`cd`到项目目录下，执行
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn
 ```
+在MySQL新建数据库，执行（晚点再写吧）
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+在根目录下创建`.env.local`文件，填写MySQL数据库的配置信息。
+```bash
+MYSQL_HOST=
+MYSQL_USER=
+MYSQL_PASSWORD=
+MYSQL_DATABASE=
+MYSQL_PORT=
+```
+## 运行
+执行
+```bash
+yarn dev
+```
+即可
