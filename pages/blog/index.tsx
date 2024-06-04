@@ -1,26 +1,28 @@
-import pool from "@/utils/database";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import Head from "next/head";
 import { Article } from "@/pages/types/api";
 import { Preview } from "@/Components/BlogIndex/preview";
-import "./style.css";
+import "./style.css"; //import tailwind
+import Header from "@/Components/Header/header";
 
 interface BlogProps {
     posts: Article[];
     errMsg: string;
 }
 
-function Blog({ posts,errMsg }: BlogProps) {
+function Blog({ posts, errMsg }: BlogProps) {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center p-24 bg-slate-300">
+        <div className="flex min-h-screen flex-col items-center w-full justify-center bg-slate-300">
             <Head>
                 <title>虚假的博客</title>
             </Head>
-            <h1 className="text-3xl transition-all hover:font-bold font-sans">最近文章</h1>
-            <div className="w-full">
-                {errMsg && <div className="text-red-500">{errMsg}</div>}
-                {posts.constructor === Array &&
-                    posts.map((post, index) => <Preview key={index} title={post.title} content={post.content} />)}
+            <Header></Header>
+            <div className="w-full md:w-1/2">
+                {/* 错误信息 */}
+                {errMsg && <div className="text-red-500 text-center">{errMsg}</div>}
+                {typeof posts === "object" &&
+                    posts.constructor === Array &&
+                    posts.map((post, index) => <Preview titleURL={post.titleURL} key={index} title={post.title} content={post.content} />)}
             </div>
         </div>
     );
@@ -38,10 +40,10 @@ export async function getStaticProps() {
             },
         };
     } catch (err) {
-        if(axios.isAxiosError(err))
+        if (axios.isAxiosError(err))
             return {
                 props: {
-                    errMsg: err.message,
+                    errMsg: err.message + ": " + err.response?.data.message ?? err.message,
                 },
             };
         // console.log(err);
