@@ -8,7 +8,11 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
     port: Number(process.env.MYSQL_PORT),
     waitForConnections: true,
-    connectionLimit: 10,
+    connectionLimit: 1,
     queueLimit: 0,
 });
 export default pool;
+
+pool.on('release', function (connection) {
+    console.log('[SQL] - Connection %d released ', connection.threadId);
+  });

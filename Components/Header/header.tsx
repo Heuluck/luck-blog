@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 export default function Header(props: { isFixed?: boolean; style?: React.CSSProperties; className?: string }) {
     const { isFixed = true, style, className } = props;
